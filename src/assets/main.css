@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/jetbrains-mono';
+
+/* Nerd Font icon glyphs (symbols only), layered on top of JetBrains Mono
+   to match "JetBrainsMono Nerd Font" without shipping a second text font */
+@font-face {
+  font-family: 'Symbols Nerd Font';
+  src: url('@azurity/pure-nerd-font/PureNerdFont.woff2') format('woff2');
+  font-display: block;
+}
+
+/* Tokyo Night palette */
+@theme {
+  --font-mono:
+    'JetBrains Mono Variable', 'Symbols Nerd Font', ui-monospace, 'JetBrains Mono', 'Fira Code',
+    'Cascadia Code', monospace;
+
+  --color-*: initial;
+  --color-bg: #1a1b26;
+  --color-bg-dark: #16161e;
+  --color-bg-highlight: #292e42;
+  --color-fg: #c0caf5;
+  --color-fg-dark: #a9b1d6;
+  --color-comment: #565f89;
+  --color-terminal-black: #414868;
+  --color-blue: #7aa2f7;
+  --color-cyan: #7dcfff;
+  --color-green: #9ece6a;
+  --color-magenta: #bb9af7;
+  --color-orange: #ff9e64;
+  --color-red: #f7768e;
+  --color-yellow: #e0af68;
+  --color-teal: #73daca;
+
+  --animate-blink: blink 1.2s steps(2, start) infinite;
+
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #app {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-bg font-mono text-fg antialiased;
+  }
+
+  ::selection {
+    @apply bg-bg-highlight;
+  }
+}
