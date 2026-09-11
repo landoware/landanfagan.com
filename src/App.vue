@@ -9,6 +9,7 @@ const shell = ref(null);
 const history = ref([
   { input: "commands", component: findCommand("commands").component },
   { input: "about", component: findCommand("about").component },
+  { input: "help", component: findCommand("help").component },
 ]);
 
 async function run(input) {
@@ -41,7 +42,7 @@ async function run(input) {
   <main class="flex h-full items-center justify-center p-4 sm:p-8">
     <TerminalWindow ref="terminal" class="h-full max-h-168 w-full max-w-3xl">
       <div v-for="(entry, i) in history" :key="i" class="my-2 first:mt-0">
-        <p class="text-comment">> {{ entry.input }}</p>
+        <p class="text-comment">{{ "\uf105" }} {{ entry.input }}</p>
         <component :is="entry.component" v-if="entry.component" @run="run" />
         <p v-else-if="entry.input" class="mb-2 text-red">
           sh: command not found: {{ entry.input }}

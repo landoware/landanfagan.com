@@ -1,8 +1,9 @@
 <script setup>
 import { computed } from "vue";
 import { commands } from "@/commands";
+import CommandButton from "../CommandButton.vue";
 
-defineEmits(["run"]);
+const emit = defineEmits(["run"]);
 
 const listed = computed(() => commands.filter((command) => !command.hidden));
 </script>
@@ -10,19 +11,7 @@ const listed = computed(() => commands.filter((command) => !command.hidden));
 <template>
   <div>
     <p v-for="command in listed" :key="command.name">
-      <button
-        type="button"
-        class="group cursor-pointer hover:underline focus-visible:underline focus-visible:outline-none"
-        @click="$emit('run', command.name)"
-      >
-        <span :class="command.color">{{ command.icon }}</span> {{ command.name
-        }}<span
-          v-if="command.url"
-          class="invisible inline-block group-hover:visible group-focus-visible:visible"
-        >
-          &#xf465;</span
-        >
-      </button>
+      <CommandButton :commandName="command.name" @run="emit('run', $event)" />
     </p>
   </div>
 </template>

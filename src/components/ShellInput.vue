@@ -51,7 +51,6 @@ defineExpose({ focus });
 <template>
   <div class="relative flex cursor-text items-center gap-2" @click="focus">
     <PromptLabel clas="shrink-0" :user="user" :host="host" :path="path" />
-
     <span class="relative min-w-0 flex-1 whitespace-pre">
       <span aria-hidden="true"
         ><span>{{ textBefore }}</span
@@ -60,9 +59,6 @@ defineExpose({ focus });
           :class="focused ? 'animate-blink bg-fg' : 'outline -outline-offset-1 outline-fg/60'"
           >{{ charAtCursor }}</span
         ><span>{{ textAfter }}</span>
-        <span class="text-comment" :hidden="textBefore.length">
-          type a command or select with the mouse</span
-        >
       </span>
 
       <input
